@@ -1,5 +1,3 @@
-include_recipe "./yum_update.rb"
-include_recipe "./ruby_build.rb"
-include_recipe "./mysql_for65.rb"
-include_recipe "./nginx.rb"
-include_recipe "./redis.rb"
+%w(yum_update ruby_build mysql_for65 nginx redis).each do |resource|
+  include_recipe "./#{resource}.rb"
+end
