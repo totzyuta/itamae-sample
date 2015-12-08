@@ -1,5 +1,9 @@
 # Itamae Recipes for Nice Rails Environment
 
+## Target
+
+CentOS 6.7
+
 ## Environment
 
 * Ruby (rbenv)
