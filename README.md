@@ -7,9 +7,11 @@ CentOS 6.7
 ## Environment
 
 * Ruby (rbenv)
-  * 2.3.0 (default): it can be added and modified by `nodes/node.json`.
-* MySQL
-  * There's no my.cnf default template now (todo!)
+  * 2.3.0 (default): it can be added and modified by `nodes/node.yml`.
+* PostgreSQL
+  * 9.2 (default): it can be changed by 'nodes/node.yml'
+  * There are default `pg_hba.conf` and `postgresql.conf` in `remote_files`
+  * User name and password can be specified by `notes/node.yml`
 * Nginx
   * User is changed for EC2.
   * Conf file would be overwrriten by `remote_files/nginx.conf`.
