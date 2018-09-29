@@ -6,24 +6,32 @@ package "readline-devel"
 package "zlib-devel"
 package "git"
 
-RBENV_DIR = "/usr/local/rbenv"
+USER_NAME = "ec2-user"
+HOME_DIR = "/home/#{USER_NAME}"
+RBENV_DIR = "#{HOME_DIR}/.rbenv"
 RBENV_SCRIPT = "/etc/profile.d/rbenv.sh"
 
 git RBENV_DIR do
   repository "git://github.com/sstephenson/rbenv.git"
 end
 
+execute "change permission for rbenv dir" do
+  command "sudo chown -R #{USER_NAME} #{RBENV_DIR}"
+  cwd HOME_DIR
+end
+
+execute "sudo mkdir #{RBENV_DIR}/plugins" do
+  not_if "test -d #{RBENV_DIR}/plugins"
+end
+execute "sudo mkdir #{RBENV_DIR}/shims" do
+  not_if "test -d #{RBENV_DIR}/shims"
+end
+execute "sudo mkdir #{RBENV_DIR}/versions" do
+  not_if "test -d #{RBENV_DIR}/versions"
+end
+
 remote_file RBENV_SCRIPT do
   source "../remote_files/rbenv.sh"
-end
-
-execute "set owner and mode for #{RBENV_SCRIPT} " do
-  command "chown root: #{RBENV_SCRIPT}; chmod 644 #{RBENV_SCRIPT}"
-  user "root"
-end
-
-execute "mkdir #{RBENV_DIR}/plugins" do
-  not_if "test -d #{RBENV_DIR}/plugins"
 end
 
 git "#{RBENV_DIR}/plugins/ruby-build" do
