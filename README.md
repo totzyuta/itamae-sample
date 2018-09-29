@@ -2,12 +2,12 @@
 
 ## Target
 
-CentOS 6.7
+Amazon Linux OS
 
 ## Environment
 
 * Ruby (rbenv)
-  * 2.3.0 (default): it can be added and modified by `nodes/node.json`.
+  * 2.5.1 : it can be added and modified by `nodes/node.json`.
 * MySQL
   * There's no my.cnf default template now (todo!)
 * Nginx
@@ -34,7 +34,6 @@ $ itamae ssh -h my_host -u ec2-user -j nodes/node.json recipes/base.rb
 
 # Note
 
-* Nginx look at `/var/www/app/*` for Rails App.
+* Nginx look at `/var/www/app/*` for Rails App on AWS.
 * Each daemon starts automatically when run Itamae recipes.
-* Currently spec file is just for Ruby build. (todo!)
 * Add the file name in `recipes/base.rb` when you add a new recipe. (I thought its like ActiveRecord-like architecture and cool ya?)
