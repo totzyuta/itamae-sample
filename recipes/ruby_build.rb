@@ -1,3 +1,13 @@
+USER_NAME = "ec2-user"
+HOME_DIR = "/home/#{USER_NAME}"
+RBENV_DIR = "#{HOME_DIR}/.rbenv"
+RBENV_SCRIPT = "/etc/profile.d/rbenv.sh"
+
+execute "install epel" do
+  command 'sudo amazon-linux-extras install -y epel'
+  cwd HOME_DIR
+  user USER_NAME
+end
 package "epel-release"
 package "gcc"
 package "openssl-devel"
@@ -6,11 +16,6 @@ package "readline-devel"
 package "zlib-devel"
 package "git"
 package "gcc-c++"
-
-USER_NAME = "ec2-user"
-HOME_DIR = "/home/#{USER_NAME}"
-RBENV_DIR = "#{HOME_DIR}/.rbenv"
-RBENV_SCRIPT = "/etc/profile.d/rbenv.sh"
 
 git RBENV_DIR do
   repository "git://github.com/sstephenson/rbenv.git"
