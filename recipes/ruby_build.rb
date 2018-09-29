@@ -5,6 +5,7 @@ package "libyaml-devel"
 package "readline-devel"
 package "zlib-devel"
 package "git"
+package "gcc-c++"
 
 USER_NAME = "ec2-user"
 HOME_DIR = "/home/#{USER_NAME}"
